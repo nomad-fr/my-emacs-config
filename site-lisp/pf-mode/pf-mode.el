@@ -21,23 +21,23 @@
 ;; Created: Jamie Zawinski <jwz@jwz.org>, 13-Oct-2004
 
 
-(defvar pf-mode-syntax-table
-  (let ((table (make-syntax-table)))
-    (modify-syntax-entry ?\" "\""    table)
-    (modify-syntax-entry ?#  "<"     table)
-    (modify-syntax-entry ?\n ">"     table)
-    (modify-syntax-entry ?$  "/"     table)
-    (modify-syntax-entry ?\\ "."     table)
-    (modify-syntax-entry ?_  "_"     table)
-    (modify-syntax-entry ?-  "_"     table)
-    (modify-syntax-entry ?.  "_"     table)
-    table))
+;; (defvar pf-mode-syntax-table
+;;   (let ((table (make-syntax-table)))
+;;     (modify-syntax-entry ?\" "\""    table)
+;;     (modify-syntax-entry ?#  "<"     table)
+;;     (modify-syntax-entry ?\n ">"     table)
+;;     (modify-syntax-entry ?$  "/"     table)
+;;     (modify-syntax-entry ?\\ "."     table)
+;;     (modify-syntax-entry ?_  "_"     table)
+;;     (modify-syntax-entry ?-  "_"     table)
+;;     (modify-syntax-entry ?.  "_"     table)
+;;     table))
 
-(defvar pf-mode-map
-  (let ((map (make-sparse-keymap)))
-    (set-keymap-name map 'pf-mode-map)
-    (define-key map "\t" 'tab-to-tab-stop)
-    map))
+;; (defvar pf-mode-map
+;;   (let ((map (make-sparse-keymap)))
+;;     ;;(set-keymap-name map 'pf-mode-map)
+;;     (define-key map "\t" 'tab-to-tab-stop)
+;;     map))
 
 (defvar pf-font-lock-keywords
   (list
@@ -120,13 +120,20 @@
 
    ))
 
-(defun pf-mode ()
-  (interactive)
-  (kill-all-local-variables)
-  (use-local-map pf-mode-map)
-  (setq mode-name "PF")
-  (setq major-mode 'pf-mode)
-  (set-syntax-table pf-mode-syntax-table)
-  (run-hooks 'pf-mode-hook))
+;; (defun pf-mode ()
+;;   (interactive)
+;;   (kill-all-local-variables)
+;;   (use-local-map pf-mode-map)
+;;   (setq mode-name "Pf-mode")
+;;   (setq major-mode 'pf-mode)
+;;   (set-syntax-table pf-mode-syntax-table)
+;;   (run-hooks 'pf-mode-hook))
+
+
+(define-derived-mode pf-mode fundamental-mode
+  (setq font-lock-defaults '(pf-font-lock-keywords))
+  (setq mode-name "PacketFilter-Mode")
+)
 
 (provide 'pf-mode)
+
